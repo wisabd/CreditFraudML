@@ -3,6 +3,7 @@ Credit Fraud Detector
 
 
 **Problem Statement**
+
 With businesses moving online, fraud and abuse in online systems is constantly increasing as well. Traditionally, rule-based fraud detection systems are used to combat online fraud, but these rely on a static set of rules created by human experts. This project uses machine learning to create models for fraud detection that are dynamic, self-improving and maintainable. Importantly, they can scale with the online business.
 
 **Data**
