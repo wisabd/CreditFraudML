@@ -2,6 +2,7 @@
 Credit Fraud Detector
 
 **Data**
+
 The example dataset used in this solution was originally released as part of a research collaboration of Worldline and the Machine Learning Group (http://mlg.ulb.ac.be) of ULB (Université Libre de Bruxelles) on big data mining and fraud detection.
 
 The dataset contains credit card transactions from European cardholders in 2013. As is common in fraud detection, it is highly unbalanced, with 492 fraudulent transactions out of the 284,807 total transactions. The dataset contains only numerical features, because the original features have been transformed for confidentiality using PCA. As a result, the dataset contains 28 PCA components, and two features that haven't been transformed, Amount and Time. Amount refers to the transaction amount, and Time is the seconds elapsed between any transaction in the data and the first transaction.
