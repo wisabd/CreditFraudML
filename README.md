@@ -22,3 +22,18 @@ Dal Pozzolo, Andrea; Boracchi, Giacomo; Caelen, Olivier; Alippi, Cesare; Bontemp
 Dal Pozzolo, Andrea Adaptive Machine learning for credit card fraud detection ULB MLG PhD thesis (supervised by G. Bontempi)
 Carcillo, Fabrizio; Dal Pozzolo, Andrea; Le Borgne, Yann-Aël; Caelen, Olivier; Mazzer, Yannis; Bontempi, Gianluca. Scarff: a scalable framework for streaming credit card fraud detection with Spark, Information fusion,41, 182-194,2018,Elsevier
 Carcillo, Fabrizio; Le Borgne, Yann-Aël; Caelen, Olivier; Bontempi, Gianluca. Streaming active learning strategies for real-life credit card fraud detection: assessment and visualization, International Journal of Data Science and Analytics, 5,4,285-300,2018,Springer International Publishing
+
+**Preprocessing**
+
+After the acquisition of the dataset, we import the libraries such as sklearn.preprocessing,
+sklearn.decomposition, sklearn.manifold, etc to begin the preprocessing steps. The dataset is not
+observed to have any missing values and the entire dataset is numerical hence there is no need
+to encode the data. Since we are going to investgate distance-based models such as KNN, SVM
+we perform feature scaling to ensure equal influence of every feature and avoid any biases due to
+difference in scales. All features have been scaled already with the exception of amount and time.
+For this, we import from sklearn.preprocessing the RobustScalar to to deal with the outliers in
+the time, amount features as they have non-normally distributed values. It does so by eliminating
+the median, scaling the data based on the interquartile range. The final preprocessing step is the train, test, validation split of the data which is done. StratifiedShuffleSplit is performed due to
+imbalanced nature of the data. It ensures each fold maintains the same class distribution as the
+original dataset by dividing data into 5 folds (4 for training, 1 for testing in each iteration). The
+data is converted to NumPy arrays for compatibility with Sci-kit models. We then perform feature extraction using PCA and also remove outliers from features negatively correlated with the class label.
