@@ -37,3 +37,7 @@ the median, scaling the data based on the interquartile range. The final preproc
 imbalanced nature of the data. It ensures each fold maintains the same class distribution as the
 original dataset by dividing data into 5 folds (4 for training, 1 for testing in each iteration). The
 data is converted to NumPy arrays for compatibility with Sci-kit models. We then perform feature extraction using PCA and also remove outliers from features negatively correlated with the class label.
+
+
+<img width="173" alt="image" src="https://github.com/user-attachments/assets/a610bc01-4956-47a5-a4b4-556ebd48d75b" />
+
