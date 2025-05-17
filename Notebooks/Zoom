@@ -1,0 +1,49 @@
+import pandas as pd
+df = pd.read_csv('/content/yellow-tripdata-2023-01.csv')  # Try reading as CSV
+
+print(df.info)
+
+print(df.shape)
+
+print(df['tpep_dropoff_datetime'])
+
+#Calculation of the duration of the ride
+import pandas as pd
+
+# Convert columns to datetime (handling microseconds)
+df['tpep_pickup_datetime'] = pd.to_datetime(df['tpep_pickup_datetime'], format='%Y-%m-%d %H:%M:%S.%f')
+df['tpep_dropoff_datetime'] = pd.to_datetime(df['tpep_dropoff_datetime'], format='%Y-%m-%d %H:%M:%S.%f')
+
+# Identify invalid trips (dropoff < pickup)
+invalid_mask = df['tpep_dropoff_datetime'] < df['tpep_pickup_datetime']
+print(f"Invalid trips found: {invalid_mask.sum()}")
+
+zero_duration_mask = df['tpep_dropoff_datetime'] == df['tpep_pickup_datetime']
+print(f"Invalid trips found: {zero_duration_mask.sum()}")
+negative_duration_mask = df['tpep_dropoff_datetime'] < df['tpep_pickup_datetime']
+print(f"Invalid trips found: {negative_duration_mask.sum()}")
+
+df['duration_minutes'] = (
+    (df['tpep_dropoff_datetime'] - df['tpep_pickup_datetime'])
+    .dt.total_seconds() / 60  # Convert to minutes
+)
+
+print(df.head)
+
+
+df = df[
+    (df['duration_minutes'] > 0) &      # Positive duration
+    (df['duration_minutes'] <= 180) &   # ≤ 3 hours
+    (df['trip_distance'] > 0)           # Valid distance
+]
+
+std_duration = df['duration_minutes'].std()
+print(f"Standard deviation of trip duration: {std_duration:.2f} minutes")
+
+print(df['duration_minutes'].describe())  # Mean, std, min/max, quartiles
+
+# Histogram
+df['duration_minutes'].hist(bins=50, edgecolor='black')
+plt.xlabel('Duration (minutes)')
+plt.title('Distribution of Trip Durations')
+plt.show()
